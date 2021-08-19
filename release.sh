@@ -69,6 +69,7 @@ git config --global user.email "$GIT_RELEASE_BOT_EMAIL";
 # Setup GPG
 echo "GPG_ENABLED '$GPG_ENABLED'"
 if [[ $GPG_ENABLED == "true" ]]; then
+     export GPG_TTY=$(tty)
      echo "Enable GPG signing in git config"
      git config --global commit.gpgsign true
      echo "Using the GPG key ID $GPG_KEY_ID"
@@ -81,7 +82,7 @@ if [[ $GPG_ENABLED == "true" ]]; then
      echo "List of keys:"
      gpg --list-secret-keys --keyid-format LONG
      echo "GPG LENGTH"
-echo ${#GPG_KEY}
+     echo ${#GPG_KEY}
 else
   echo "GPG signing is not enabled"
 fi
@@ -99,9 +100,6 @@ if [[ -n "$MAVEN_PROJECT_FOLDER" ]]; then
   echo "Move to folder $MAVEN_PROJECT_FOLDER"
   cd $MAVEN_PROJECT_FOLDER
 fi
-
-echo "GPG LENGTH"
-echo ${#GPG_KEY}
 
 APP_VERSION=`xmllint --xpath '/*[local-name()="project"]/*[local-name()="version"]/text()' pom.xml`
 #verify we are not on a release tag
