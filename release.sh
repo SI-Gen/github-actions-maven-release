@@ -80,6 +80,8 @@ if [[ $GPG_ENABLED == "true" ]]; then
      rm ./private.key
      echo "List of keys:"
      gpg --list-secret-keys --keyid-format LONG
+     echo "GPG LENGTH"
+echo ${#GPG_KEY}
 else
   echo "GPG signing is not enabled"
 fi
@@ -98,6 +100,8 @@ if [[ -n "$MAVEN_PROJECT_FOLDER" ]]; then
   cd $MAVEN_PROJECT_FOLDER
 fi
 
+echo "GPG LENGTH"
+echo ${#GPG_KEY}
 
 APP_VERSION=`xmllint --xpath '/*[local-name()="project"]/*[local-name()="version"]/text()' pom.xml`
 #verify we are not on a release tag
