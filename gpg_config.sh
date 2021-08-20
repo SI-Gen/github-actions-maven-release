@@ -13,4 +13,5 @@ cat ~/.gnupg/gpg.conf
 echo '*** gpg-agent.conf Contents ***'
 cat ~/.gnupg/gpg-agent.conf
 
+echo '*** Killing GPG-Agent ***'
 gpgconf --kill gpg-agent
