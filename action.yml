@@ -126,6 +126,11 @@ runs:
     GPG_KEY: ${{ inputs.gpg-key }}
     GPG_PASSPHRASE: ${{ inputs.gpg-passphrase }}
 
+    SIGN_KEY_ID: ${{ inputs.gpg-key-id }}
+    SIGN_KEY_PASS: ${{ inputs.gpg-passphrase }}
+    SIGN_KEY: ${{ inputs.gpg-key }}
+
+
     SSH_PRIVATE_KEY: ${{ inputs.ssh-private-key }}
     SSH_ROOT_FOLDER: /root/.ssh
     SSH_PASSPHRASE: ${{ inputs.ssh-passphrase }}
@@ -157,3 +162,4 @@ runs:
     VERSION_MINOR: ${{ inputs.version-minor }}
 
     RELEASE_BRANCH_NAME: ${{ inputs.release-branch-name }}
+
