@@ -2,6 +2,7 @@
 set -e
 
 
+
 # avoid the release loop by checking if the latest commit is a release commit
 readonly local last_release_commit_hash=$(git log --author="$GIT_RELEASE_BOT_NAME" --pretty=format:"%H" -1)
 echo "Last $GIT_RELEASE_BOT_NAME commit: ${last_release_commit_hash}"
@@ -100,6 +101,8 @@ if [[ -n "$MAVEN_PROJECT_FOLDER" ]]; then
   echo "Move to folder $MAVEN_PROJECT_FOLDER"
   cd $MAVEN_PROJECT_FOLDER
 fi
+
+mvn help:effective-settings
 
 APP_VERSION=`xmllint --xpath '/*[local-name()="project"]/*[local-name()="version"]/text()' pom.xml`
 #verify we are not on a release tag
