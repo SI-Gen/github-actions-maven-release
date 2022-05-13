@@ -112,10 +112,9 @@ if [[ "$APP_VERSION" == *0 ]]; then
      git commit -am "Prepare version for next release"
 fi
 
-
 # Setup next version
 if [[ -n "$MAVEN_DEVELOPMENT_VERSION_NUMBER" ]]; then
-      MAVEN_OPTION="$MAVEN_OPTION -DdevelopmentVersion=${MAVEN_DEVELOPMENT_VERSION_NUMBER}"
+      MAVEN_OPTION="$MAVEN_OPTION -DdevelopmentVersion="
 else 
   if [[ "$VERSION_MINOR" == "true" ]]; then
       MAVEN_OPTION="$MAVEN_OPTION -DdevelopmentVersion=\${parsedVersion.majorVersion}.\${parsedVersion.nextMinorVersion}.0-SNAPSHOT"
@@ -124,6 +123,10 @@ else
   fi
 fi
 
+echo "MAVEN_DEVELOPMENT_VERSION_NUMBER: $MAVEN_DEVELOPMENT_VERSION_NUMBER"
+echo "MAVEN_RELEASE_VERSION_NUMBER: $MAVEN_RELEASE_VERSION_NUMBER"
+echo "MAVEN_OPTION: ${MAVEN_OPTION}"
+echo "MAVEN_ARGS: ${MAVEN_ARGS}"
 
 # Setup release version
 if [[ -n "$MAVEN_RELEASE_VERSION_NUMBER" ]]; then
